@@ -17,9 +17,14 @@ class AccesoDatos{
 
 
     private function __construct() {
-         $link='mysql:host=localhost;dbname=editienda';//conecta la base de datos con el php
+       
+        $link='mysql:host=localhost;dbname=editienda';//conecta la base de datos con el php
          $usuario='root';
          $pass='';
+
+         /*$link='mysql:host=remotemysql.com:3306;dbname=AkM8zIqj97';//conecta la base de datos con el php
+         $usuario='AkM8zIqj97';
+         $pass='nCoJlsR3pi';*/
 
         try {
 
@@ -31,7 +36,7 @@ class AccesoDatos{
         }
     }
 
-    public function prepararConsulta($consulta){
+    public function consultaRealizar($consulta){
 
         return  $this->objetoPDO->prepare($consulta);
     }

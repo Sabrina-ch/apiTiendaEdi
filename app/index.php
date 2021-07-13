@@ -47,18 +47,11 @@ $app->get('/hello/{name}', function (Request $request, Response $response, $args
 
 
 
-/*$app->group('/usuario', function (RouteCollectorProxy $group) {
-    $group->get('/{name}', function (Request $request, Response $response, $args) {
-        $name = $args['name'];
-        $response->getBody()->write("Hello, $name");
-        return $response;
-    });
-});*/
-
 
 $app->group('/usuario', function (RouteCollectorProxy $group) {
     $group->POST('/login', \UsuarioController::class . ':retornarUsuario');
-    $group->get('/registro', \UsuarioController::class . ':registrarUsuario');
+    $group->POST('/registro', \UsuarioController::class . ':registrarUsuario');
+   
 });
 
 //ejemplo de group
