@@ -18,10 +18,17 @@ class AccesoDatos{
 
     private function __construct() {
        
-        $link='mysql:host=localhost;dbname=editienda';//conecta la base de datos con el php
+       $link='mysql:host=localhost;dbname=editienda';//conecta la base de datos con el php
          $usuario='root';
          $pass='';
 
+     /* $link='mysql.services.clever-cloud.com:3306/dbname=btwjmvayjds0wjxeootr';//conecta la base de datos con el php
+         $usuario='u96m3qvxa99rezo1';
+         $pass='';*/
+
+
+
+         //conexion remotemysql
          /*$link='mysql:host=remotemysql.com:3306;dbname=AkM8zIqj97';//conecta la base de datos con el php
          $usuario='AkM8zIqj97';
          $pass='nCoJlsR3pi';*/

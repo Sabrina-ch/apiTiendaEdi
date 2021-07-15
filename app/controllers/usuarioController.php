@@ -10,14 +10,18 @@
         //var_dump($listaUsuario);
                      
          foreach($listaUsuario as $usr){
-            if($usr->nombre_usuario == $valor["usuario"] ){
-                $mensaje = "Bienvenido/a" ." " .$usr->nombre_usuario;
+          
+           
+            if($usr->nombre == $valor["usuario"] ){
+                
+                $mensaje = "Bienvenido/a" ." " .$usr->nombre;
             }
-           else{
-                $mensaje ="USUARIO NO VALIDO";
-            }
-                           
-            }
+            if($usr->nombre != $valor["usuario"]){
+                $mensaje = "Usuario no registrado";
+                }
+                                   
+            } 
+            
                    
           $response->getBody()->Write(json_encode($mensaje));
           return $response;
@@ -31,7 +35,7 @@
             
             $nuevoUsu = new Usuario();
 
-            $nuevoUsu->nombre_usuario = $valor['usuario'];
+            $nuevoUsu->nombreUsuario = $valor['usuario'];
             $nuevoUsu->mail = $valor['mail'];
             $nuevoUsu->clave = $valor['clave'];
 

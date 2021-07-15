@@ -3,7 +3,7 @@
  class Usuario{
    
    
-   public $nombre_usuario;
+   public $nombreUsuario;
     public $clave;
     public $mail; 
  
@@ -15,7 +15,7 @@
       
        $objetoDatos = AccesoDatos::obtenerInstancia();
        
-       $consulta= $objetoDatos->consultaRealizar('select nombre_usuario from usuarios');
+       $consulta= $objetoDatos->consultaRealizar('select nombre from usuarios');
        $consulta->execute();
 
        
@@ -29,9 +29,9 @@
 
       $objetoDatos = AccesoDatos::obtenerInstancia();
        
-      $consulta= $objetoDatos->consultaRealizar("INSERT INTO `usuarios` (nombre_usuario, mail, clave) VALUES (?,?,?)");
+      $consulta= $objetoDatos->consultaRealizar("INSERT INTO `usuarios` (nombre, mail, clave) VALUES (?,?,?)");
       
-      $consulta->bindParam(1, $this->nombre_usuario);
+      $consulta->bindParam(1, $this->nombreUsuario);
       $consulta->bindParam(2, $this->mail);
       $consulta->bindParam(3, $this->clave);
 
