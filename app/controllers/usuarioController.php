@@ -13,13 +13,12 @@
             if($usr->nombre_usuario == $valor["usuario"] ){
                 $mensaje = "Bienvenido/a" ." " .$usr->nombre_usuario;
             }
+           else{
+                $mensaje ="USUARIO NO VALIDO";
+            }
                            
-            
-        }
-        if($usr->nombre_usuario != $valor["usuario"] ){
-            $mensaje ="USUARIO NO VALIDO";
-        }
-           
+            }
+                   
           $response->getBody()->Write(json_encode($mensaje));
           return $response;
         }
@@ -28,7 +27,7 @@
         public function registrarUsuario( $request,$response, $args){
        
             $valor =  $request->getParsedBody();
-            var_dump($valor);
+           // var_dump($valor);
             
             $nuevoUsu = new Usuario();
 
@@ -39,7 +38,9 @@
             
            $retorno= $nuevoUsu->ingresarUsuario();
 
-            $response->getBody()->Write(json_encode($retorno));
+           // $response->getBody()->Write(json_encode($retorno));
+
+            echo 'Usuario Registrado';
 
             return $response;
      
