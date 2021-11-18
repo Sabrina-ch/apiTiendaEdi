@@ -12,7 +12,7 @@ use Slim\Routing\RouteContext;
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/accesoDatos/accesoDatos.php';
 require __DIR__ . '/controllers/usuarioController.php';
-require __DIR__ . '/controllers/productoController.php';
+require __DIR__ . '/controllers/listaController.php';
 require __DIR__ . '/entidades/usuario.php';
 require __DIR__ . '/entidades/producto.php';
 
@@ -29,7 +29,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
 
     $response = $response->withHeader('Access-Control-Allow-Origin','*');
-    $response = $response->withHeader('Access-Control-Allow-Methods', 'get, post,put');
+    $response = $response->withHeader('Access-Control-Allow-Methods', 'GET.POST,PUT,DELETE');
     $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
 
     // Optional: Allow Ajax CORS requests with Authorization header
@@ -49,23 +49,21 @@ $app->get('/hello/{name}', function (Request $request, Response $response, $args
 
 
 $app->group('/usuario', function (RouteCollectorProxy $group) {
-    $group->POST('/login', \UsuarioController::class . ':retornarUsuario');
-    $group->POST('/registro', \UsuarioController::class . ':registrarUsuario');
+    $group->post('/login', \UsuarioController::class . ':retornarUsuario');
+    $group->post('/registro', \UsuarioController::class . ':registrarUsuario');
    
 });
 
 //ejemplo de group
-$app->group('/productos', function (RouteCollectorProxy $group) {
-    $group->get('/almacen', \productoController::class . ':retornarAlmacen');
-    $group->get('/bebidas', \productoController::class . ':retornarBebida');
+$app->group('/lista', function (RouteCollectorProxy $group) {
+    $group->get('/traer', \listaController::class . ':retornarLista');
+    $group->delete('/eliminar', \listaController::class . ':eliminarUsuario');
+    $group->post('/agregar', \listaController::class . ':agregarUsuarioLista');
+    $group->put('/modificar', \listaController::class . ':modificarUsuario');
+
+   ;
       
 });
-
-
-
-/*$app->post('/usuario',\usuarioController::class."retornarUsuario");
-$app->post('/producto',\productoController::class."retornarProducto");*/
-
 
 
 $app->run();

@@ -4,54 +4,67 @@
 
     public function retornarUsuario( $request,$response, $args){
        
-        $valor =  $request->getParsedBody();
+        /*$valor =  $request->getParsedBody();*/
+
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
+        $nombre= $request->nombre;
+        
         //var_dump($valor);
         $listaUsuario= Usuario::buscarUsuario();
-        //var_dump($listaUsuario);
+       /* var_dump($listaUsuario);*/
                      
          foreach($listaUsuario as $usr){
-          
+             if(isset($usr)){
            
-            if($usr->nombre == $valor["usuario"] ){
-                
-                $mensaje = "Bienvenido/a" ." " .$usr->nombre;
+            if($usr->nombre == $nombre ){
+               
+               
+               $respuesta = [
+                    'success' => true,
+                    'message' => "Usuario valido",
+                ];
             }
-            if($usr->nombre != $valor["usuario"]){
-                $mensaje = "Usuario no registrado";
+            else{
+
+               $respuesta = [
+                    'success' => false,
+                    'message' => "Usuario o contraseña inválidos"
+                    ];
+                    
                 }
                                    
-            } 
+            } }
+            
             
                    
-          $response->getBody()->Write(json_encode($mensaje));
+          $response->getBody()->Write(json_encode($respuesta));
           return $response;
         }
+    
 
-      
         public function registrarUsuario( $request,$response, $args){
        
-            $valor =  $request->getParsedBody();
-           // var_dump($valor);
-            
-            $nuevoUsu = new Usuario();
+             $postdata = file_get_contents("php://input");
+                  $request = json_decode($postdata);
+                 
 
-            $nuevoUsu->nombreUsuario = $valor['usuario'];
-            $nuevoUsu->mail = $valor['mail'];
-            $nuevoUsu->clave = $valor['clave'];
+        //recorro los valores del objeto
+                  $usuarioNuevo = new Usuario();
+                   foreach($request as $atr => $valueAtr) {
+                    $usuarioNuevo->{$atr} = $valueAtr;
+                        }
 
-            
-           $retorno= $nuevoUsu->ingresarUsuario();
+                    $retorno = $usuarioNuevo->agregarUsuario();
 
-           // $response->getBody()->Write(json_encode($retorno));
+                    $response->getBody()->Write(json_encode($retorno));
 
-            echo 'Usuario Registrado';
-
-            return $response;
+                    return $response;
      
-                         
-           
             }
+
         }
+        
      ?>   
 
 
