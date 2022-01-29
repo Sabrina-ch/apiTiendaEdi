@@ -18,14 +18,14 @@ class AccesoDatos{
 
     private function __construct() {
        
-       /*$link='mysql:host=localhost;dbname=editienda';
+      /* $link='mysql:host=localhost;dbname=editienda';
          $usuario='root';
          $pass='';*/
         
-         //base Clever
-        $link='mysql.services.clever-cloud.com:3306/dbname=btwjmvayjds0wjxeootr';
+         //base Clever FUNCIONA
+         $link='mysql:host=btwjmvayjds0wjxeootr-mysql.services.clever-cloud.com:3306;dbname=btwjmvayjds0wjxeootr';
          $usuario='u96m3qvxa99rezo1';
-         $pass='';
+         $pass='yZZXb5u1aEQEgX6W7nYE';
 
 
 
