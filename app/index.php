@@ -49,8 +49,8 @@ $app->get('/hello/{name}', function (Request $request, Response $response, $args
 
 
 $app->group('/usuario', function (RouteCollectorProxy $group) {
-    $group->post('/login', \UsuarioController::class . ':retornarUsuario');
-    $group->post('/registro', \UsuarioController::class . ':registrarUsuario');
+    $group->POST('/login', \UsuarioController::class . ':retornarUsuario');
+    $group->POST('/registro', \UsuarioController::class . ':registrarUsuario');
    
 });
 
