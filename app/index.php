@@ -29,7 +29,7 @@ $app->add(function (Request $request, RequestHandlerInterface $handler): Respons
     $requestHeaders = $request->getHeaderLine('Access-Control-Request-Headers');
 
     $response = $response->withHeader('Access-Control-Allow-Origin','*');
-    $response = $response->withHeader('Access-Control-Allow-Methods', 'GET.POST,PUT,DELETE');
+    $response = $response->withHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE');
     $response = $response->withHeader('Access-Control-Allow-Headers', $requestHeaders);
 
     // Optional: Allow Ajax CORS requests with Authorization header
