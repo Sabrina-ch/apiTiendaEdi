@@ -4,15 +4,19 @@
 
     public function retornarUsuario( $request,$response, $args){
        
-        /*$valor =  $request->getParsedBody();*/
 
         $postdata = file_get_contents("php://input");
         $request = json_decode($postdata);
         $nombre= $request->nombre;
         
-        //var_dump($valor);
+        
+        
         $listaUsuario= Usuario::buscarUsuario();
        /* var_dump($listaUsuario);*/
+       $respuesta = [
+        'success' => false,
+        'message' => "Usuario o contraseña inválidos"
+        ];
                      
          foreach($listaUsuario as $usr){
              if(isset($usr)){
@@ -25,15 +29,7 @@
                     'message' => "Usuario valido",
                 ];
             }
-            else{
-
-               $respuesta = [
-                    'success' => false,
-                    'message' => "Usuario o contraseña inválidos"
-                    ];
-                    
-                }
-                                   
+                           
             } }
             
             
