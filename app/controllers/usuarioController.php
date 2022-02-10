@@ -5,6 +5,7 @@
     public function retornarUsuario( $request,$response, $args){
        
 
+        print("llegaste a retornar usuario");
        /* $postdata = file_get_contents("php://input");
         $request = json_decode($postdata);
         $nombre= $request->nombre;
@@ -37,7 +38,7 @@
           $response->getBody()->Write(json_encode($respuesta));
           return $response;*/
 
-          $parametros = $request->getParsedBody();
+         /* $parametros = $request->getParsedBody();
         $arrayUsers = Usuario::buscarUsuario($parametros['nombre']);
         
         if(count($arrayUsers)==1){
@@ -59,7 +60,7 @@
             $response->getBody()->write("Usuario incorrecto");
         }
   
-    return $response;
+    return $response;*/
 
     }
 
