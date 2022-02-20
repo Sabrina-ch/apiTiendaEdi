@@ -8,6 +8,7 @@
         $postdata = file_get_contents("php://input");
         $request = json_decode($postdata);
         $nombre= $request->nombre;
+        $clave=$request->clave;
         
         
         
@@ -21,12 +22,12 @@
          foreach($listaUsuario as $usr){
              if(isset($usr)){
            
-            if($usr->nombre == $nombre ){
+            if($usr->nombre == $nombre && $usr->clave == $clave){
                
                
                $respuesta = [
                     'success' => true,
-                    'message' => "Usuario valido",
+                    'message' => "Usuario váslido",
                 ];
             }
                            
